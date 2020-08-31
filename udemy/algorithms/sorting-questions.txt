@@ -1,0 +1,15 @@
+//#1 - Sort 10 schools around your house by distance: insertion sort - works well with small lists
+
+//#2 - eBay sorts listings by the current Bid amount: radix or counting sort since it's numerical fixed length 
+
+//#3 - Sport scores on ESPN - quick sort due to better space complexity vs merge sort
+
+//#4 - Massive database (can't fit all into memory) needs to sort through past year's user data - mergesort since we want to avoid the worst case quicksort quadratic time complexity
+
+//#5 - Almost sorted Udemy review data needs to update and add 2 new reviews - insertion sort. works will with small sizes and almost sorted data
+
+//#6 - Temperature Records for the past 50 years in Canada - radix or counting sort since it's numerical fixed length, but if they have decimal precision - use quicksort due to better space complexity
+
+//#7 - Large user name database needs to be sorted. Data is very random. - mergesort or quicksort - depends on machine memory contraints
+
+//#8 - You want to teach sorting for the first time - bubble sort
