@@ -120,15 +120,15 @@ class MyLinkedList {
       this.head = prev
     }
     
-    reverseRecursive() {
-        this.reversePointers(this.head, null)
+    reverseRecursive(head) {
+        return this.reversePointers(head, null)
     }
     
     reversePointers(head, prev) {
         //break condition
         if(!head) {
-            this.head = prev
-            return
+            //this.head = prev
+            return prev
         }
         
         let nextHead = head.next
@@ -136,7 +136,7 @@ class MyLinkedList {
         prev = head
         head = nextHead
         
-        this.reversePointers(head, prev)
+        return this.reversePointers(head, prev)
     }
     
 }
@@ -162,5 +162,5 @@ myLinkedList.append("steve")
 
 // console.log(myLinkedList.remove(2))
 myLinkedList.print()
-console.log(myLinkedList.reverseRecursive())
+console.log("here: ",myLinkedList.reverseRecursive(myLinkedList))
 myLinkedList.print()

@@ -90,5 +90,5 @@ var trap = function(height) {
     return amount
 };
 
-let heights = [0,1,0,2,1,0,1,3,2,1,2,1]
+let heights = [2,0,2]
 console.log(trap(heights))
