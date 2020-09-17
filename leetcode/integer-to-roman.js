@@ -208,8 +208,6 @@ var intToRomanHardcode = function(num) {
     
     let onesPlace = Math.floor(remainder)
     
-    console.log(thousandsPlace, hundredsPlace, tensPlace, onesPlace)
-    
     return thousands[thousandsPlace] + hundreds[hundredsPlace] + tens[tensPlace] + ones[onesPlace]
 };
 
