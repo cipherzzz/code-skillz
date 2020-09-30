@@ -44,10 +44,10 @@ class TreeNode {
  */
 var maxPathSum = function(root) {
     let max = root.val
-    let queue = []
-    queue[0] = root
-    while (queue.length > 0) {
-        let parent = queue.pop()
+    let stack = []
+    stack[0] = root
+    while (stack.length > 0) {
+        let parent = stack.pop()
         let left = parent.left
         let right = parent.right
 
@@ -64,11 +64,11 @@ var maxPathSum = function(root) {
         max = Math.max(max, sum)
 
         if (left) {
-            queue.push(left)
+            stack.push(left)
         }
 
         if (right) {
-            queue.push(right)
+            stack.push(right)
         }
     }
     return max

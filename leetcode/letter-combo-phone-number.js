@@ -54,5 +54,5 @@ var letterCombinations = function(digits) {
     
 };
 
-let digits = "234"
-console.log(letterCombinations(23))
+let digits = "23"
+console.log(letterCombinations(digits))

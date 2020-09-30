@@ -51,11 +51,10 @@ class Node {
 }
 
 class DoublyLinkedList {
-    constructor(capacity, map) {
+    constructor(capacity) {
         
         this.capacity = capacity
         this.size = 0
-        this.map = map
         
         this.head = new Node(-1)
         this.tail = new Node(-1)
@@ -86,9 +85,14 @@ class DoublyLinkedList {
         let next = node.next
         previous.next = next
         next.previous = previous
-        this.map.delete(node.value)
         
         this.size--
+    }
+    
+    pop() {
+        let prev = this.tail.prev
+        this.remove(this.tail.prev)
+        return prev
     }
 }
 
@@ -96,7 +100,7 @@ class LRUCache {
     constructor(capacity) {
         this.capacity = capacity
         this.nodeMap = new Map()
-        this.nodeList = new DoublyLinkedList(capacity, this.nodeMap)
+        this.nodeList = new DoublyLinkedList(capacity)
     }
     
     get(key) {
@@ -115,6 +119,10 @@ class LRUCache {
         if(!node) {
             node = new Node(value)
             this.nodeMap.set(key, node)
+            if(this.nodeList.size == this.capacity) {
+                let item = this.nodeList.pop()
+                this.nodeMap.delete(item.value)
+            }
             this.nodeList.add(node)
         } else {
             this.nodeList.remove(node)

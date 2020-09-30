@@ -14,7 +14,7 @@
 //   [15,7]
 // ]
 
-// Traverse the tree - BFS
+// Traverse the tree - BFs
 // create a list of lists where each list represents a level of the tree
 // create an index variable init to 0
 // create a queue and add the root node to the queue
