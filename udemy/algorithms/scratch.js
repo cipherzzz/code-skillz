@@ -64,3 +64,49 @@ function traverseTree(node, level, nodes) {
 }
 
 console.log(printTreeDFS(root))
+
+
+function validateBST(root) {
+    
+    if(root == undefined) {
+        return false
+    }
+    
+    if(root == null) {
+        return true
+    }
+    
+    if(!root.left && !root.right) {
+        return true
+    }
+    
+    let queue = [] //FIFO
+    queue.push(root) 
+    while(queue.length > 0) {
+        let node = queue.shift()
+        
+        if(node.left) {
+            if(node.left.value > node.value) {
+                return false
+            } else {
+                queue.push(node.left)
+            }
+        }
+        
+        if(node.right) {
+            if(node.right.value < node.value) {
+                return false
+            } else {
+                queue.push(node.right)
+            }
+        }
+        
+    }
+    return true
+}
+
+let bst = new TreeNode(5, new TreeNode(1), new TreeNode(6))
+let notbst = new TreeNode(5, new TreeNode(1), new TreeNode(4, new TreeNode(6), new TreeNode(7)))
+console.log("validateBST:",validateBST(bst))
+console.log("validateBST:",validateBST(notbst))
+
