@@ -3,6 +3,7 @@ class Graph {
     this.numberOfNodes = 0;
     this.adjacentList = {
     }; 
+    this.visited = {}
   } 
   addVertex(node)  { 
     if(!node || typeof node !== 'string' || node.length == 0) {
@@ -58,6 +59,64 @@ class Graph {
       console.log(node + "-->" + connections); 
     } 
 } 
+
+  hasNodeBFS(source, destination) {
+    let hasPath = this.askChildrenBFS(source, destination)
+    this.visited = {}
+    return hasPath
+  }
+
+  askChildrenBFS(source, destination) {
+    let queue = []
+    queue.push(source)
+    
+    while(queue.length != 0) {
+      let node = queue.shift()
+      if(node == destination) {
+        return true
+      }
+      
+      if(this.visited[node] == true) {
+        continue
+      }
+      this.visited[node] = true
+      
+      let adjacents = this.adjacentList[node]
+      for(let vertex of adjacents) {
+        queue.unshift(vertex)
+      }
+    }
+    
+    return false
+  }
+
+  hasNodeDFS(source, destination) {
+    let hasPath = this.askChildrenDFS(source, destination)
+    this.visited = {}
+    return hasPath
+  }
+
+  askChildrenDFS(source, destination) {
+    
+    if(this.visited[source] == true) {
+      return false
+    }
+    this.visited[source] = true
+    if(source == destination) {
+      return true
+    }
+    
+    let nodeConnections = this.adjacentList[source];
+    for(let vertex of nodeConnections) {
+      if(this.askChildrenDFS(vertex, destination) == true) {
+        return true
+      }
+    }
+    
+    return false
+    
+  }
+
 } 
 
 const myGraph = new Graph();
@@ -78,6 +137,8 @@ myGraph.addEdge('0', '2');
 myGraph.addEdge('6', '5');
 
 myGraph.showConnections(); 
+console.log(myGraph.hasNodeDFS('1','6'))
+console.log(myGraph.hasNodeBFS('1','6'))
 //Answer:
 // 0-->1 2 
 // 1-->3 2 0 
