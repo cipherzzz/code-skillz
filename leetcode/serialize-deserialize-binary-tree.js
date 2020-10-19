@@ -85,4 +85,5 @@ function deserializeNodes(nodes) {
 
 //deserialize(serialize(root));
 let root = new TreeNode(1, new TreeNode(2), new TreeNode(3, new TreeNode(4), new TreeNode(5)))
-console.log(deserialize(serialize(root)))
+let serialized = serialize(root)
+console.log(deserialize(serialized))
