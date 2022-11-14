@@ -5,6 +5,8 @@ function binarySearch(sorted, target) {
     while (left < right) {
         let mid = Math.floor((left + right) / 2)
 
+        console.log(left, right, mid)
+
         // if our midpoint matches
         if (sorted[mid] == target) {
             left = mid
@@ -22,5 +24,5 @@ function binarySearch(sorted, target) {
 }
 
 let sorted = [0, 1, 2, 3, 4]
-let target = 4
+let target = 6
 console.log(binarySearch(sorted, target))
