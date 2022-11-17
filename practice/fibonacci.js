@@ -19,4 +19,4 @@ function fibonacci(n) {
     return seq[n];
 }
 
-console.log(fibonacci(9))
+console.log(fibonacci(6))
