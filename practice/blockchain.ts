@@ -15,13 +15,13 @@ interface Block {
     nonce: number;
 }
 
-interface Blockchain {
+export interface Blockchain {
     blocks: Block[];
     addBlock: (data: Tx[]) => void;
     verify: ()=> boolean;
 }
 
-const createBlock = (input: {data: Tx[], previousHash: string}): Block => {
+export const createBlock = (input: {data: Tx[], previousHash: string}): Block => {
   let timestamp = Date.now();
   let data = input.data;
   let previousHash = input.previousHash;
@@ -48,7 +48,7 @@ const createTx = (input: {from: string, to: string, amount: number}):Tx => {
 }
 
     
-   const mineBlock = (input:{difficulty: number, block: Block}): Block => {
+   export const mineBlock = (input:{difficulty: number, block: Block}): Block => {
     let nonce = input.block.nonce
     let hash = input.block.hash
     const difficultyPrefix = () => {
@@ -72,7 +72,7 @@ const createTx = (input: {from: string, to: string, amount: number}):Tx => {
   }
 
 
-const createBlockchain = (): Blockchain => {
+export const createBlockchain = (): Blockchain => {
     const genesisBlock = createBlock({data: [], previousHash: ''})
     let blocks = [genesisBlock];
 
@@ -100,11 +100,12 @@ const createBlockchain = (): Blockchain => {
     }
 }
 
-const chain = createBlockchain();
-chain.addBlock([createTx({from: 'a', to: 'b', amount: 10})]);
 
-console.log(chain.verify());
+// const chain = createBlockchain();
+// chain.addBlock([createTx({from: 'a', to: 'b', amount: 10})]);
 
-console.log(mineBlock({difficulty: 1, block: chain.blocks[1]}));
+// console.log(chain.verify());
+
+// console.log(mineBlock({difficulty: 1, block: chain.blocks[1]}));
 
 
