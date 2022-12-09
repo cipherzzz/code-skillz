@@ -5,15 +5,15 @@ import "hardhat/console.sol";
 
 contract Delegate {
 
-  address public other;
-  address public owner;
+  //address public other;
+  address public beetle;
 
-  constructor(address _owner) {
-    owner = _owner;
+  constructor() {
+    beetle = msg.sender;
   }
 
   function pwn() public {
     console.log("pwn");
-    owner = msg.sender;
+    beetle = msg.sender;
   }
 }
