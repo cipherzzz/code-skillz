@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.6.0;
 
 import './Telephone.sol';
 
@@ -8,7 +8,7 @@ contract AttackTelephone {
     Telephone telephone;
     address public owner;
 
-    constructor(address _telephone) {
+    constructor(address _telephone) public {
         telephone = Telephone(_telephone);
         owner = msg.sender;
     }

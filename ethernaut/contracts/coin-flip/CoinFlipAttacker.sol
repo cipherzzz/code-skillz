@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.6.0;
 
-import '@openzeppelin/contracts/utils/math/SafeMath.sol';
+import '@openzeppelin/contracts/math/SafeMath.sol';
 import './CoinFlip.sol';
 import "hardhat/console.sol";
 

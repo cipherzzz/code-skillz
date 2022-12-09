@@ -11,24 +11,25 @@ describe("Reentrant", function () {
     // Contracts are deployed using the first signer/account by default
     const [victim, attacker] = await ethers.getSigners();
 
-    const Reentrant = await ethers.getContractFactory("EtherStore");
+    const Reentrant = await ethers.getContractFactory("Reentrant");
     const reentrant = await Reentrant.connect(victim).deploy();
 
-    const Attack = await ethers.getContractFactory("Attack");
+    const Attack = await ethers.getContractFactory("Attacker");
     const attack = await Attack.connect(attacker).deploy(reentrant.address);
 
     return { reentrant, attack, victim, attacker };
   }
 
 
-  it.only("Victim calling malicious contract should transfer ownership to attacker", async function () {
+  it.skip("Attacker should be able to drain vulnerable contract", async function () {
     const { reentrant, attack, victim, attacker } = await loadFixture(deployFixture);
     
-    await victim.sendTransaction({to: reentrant.address, value: ethers.utils.parseEther('100')});
-    expect(await ethers.provider.getBalance(reentrant.address)).to.equal(ethers.utils.parseEther('100'))
+    await attacker.sendTransaction({to: attack.address, value: ethers.utils.parseEther('1')});
+    expect(await ethers.provider.getBalance(attack.address)).to.equal(ethers.utils.parseEther('1'))
     
     // attack
-    await attack.attack({value: ethers.utils.parseEther('1'), gasLimit: 1000000});
+    await attack.attack();
+
     expect(await ethers.provider.getBalance(attack.address)).to.equal(ethers.utils.parseEther('1'))
   });
 

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.6.0;
 
 //console.log("Hello World");
 import 'hardhat/console.sol';
@@ -15,7 +15,8 @@ mapping(address => uint) public balances;
         uint bal = balances[msg.sender];
         require(bal > 0);
 
-        (bool sent, ) = msg.sender.call{value: bal}("");
+         // send Ether to the caller
+        (bool sent, ) = msg.sender.call.value(bal)("");
         require(sent, "Failed to send Ether");
 
         balances[msg.sender] = 0;
