@@ -5,6 +5,7 @@ import "hardhat/console.sol";
 
 contract Delegate {
 
+  address public other;
   address public owner;
 
   constructor(address _owner) {
