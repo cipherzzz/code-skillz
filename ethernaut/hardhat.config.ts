@@ -1,5 +1,15 @@
-import { HardhatUserConfig } from "hardhat/config";
+import { HardhatUserConfig, task } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+require('hardhat-storage-layout');
+
+// Deploy the contract
+task(
+  "storage",
+  "Storage Layout"
+).setAction(async (taskArgs, hre) => {
+  await
+  hre.storageLayout.export();
+});
 
 const config: HardhatUserConfig = {
   solidity: {

@@ -1,16 +1,30 @@
+// coin combinations
+// Given a number of cents, return the optimal configuration of coins in an object
+//
+// 1 cent = 1
+// 5 cents = 5
+// 10 cents = 10
+// 25 cents = 25
+//
+// 1 cent = 1
+// 5 cents = 5
+// 10 cents = 10
+// 25 cents = 25
+// 50 cents = 50
+// 100 cents = 100
+//
 
-
-function coinCombo (coins: number[], amount: number): number {
-  const dp = Array(amount + 1).fill(0)
-  dp[0] = 1
-  for (let i = 0; i < coins.length; i++) {
-    for (let j = coins[i]; j <= amount; j++) {
-      dp[j] += dp[j - coins[i]]
+const coinCombo = (cents: number): { [key: string]: number } => {
+    const coins = [100, 50, 25, 10, 5, 1]
+    const cache: { [key: string]: number } = {}
+    for(let i = 0; i < coins.length; i++) {
+        const coin = coins[i]
+        const coinCount = Math.floor(cents / coin)
+        if(coinCount > 0) {
+            cache[coin] = coinCount
+            cents -= coinCount * coin
+        }
     }
-  }
-  return dp[amount]
+    return cache
 }
 
-console.log(coinCombo([1, 2, 5], 5))
-console.log(coinCombo([1, 2, 5], 11))
-console.log(coinCombo([1, 2, 5], 100))
