@@ -25,7 +25,7 @@ describe("Privacy", function () {
   }
 
 
-  it.only("Attacker should be able to read the private variable value", async function () {
+  it("Attacker should be able to read the private variable value", async function () {
     const { privacy, attacker, secret } = await loadFixture(deployFixture);
 
     const attackerVault = privacy.connect(attacker)
